@@ -17,11 +17,14 @@
             //Buscando os chamados
             $("#lerChamados").click(function () {
                 $.ajax({
-                    dataType: 'jason',
-                    url: 'http://localhost:49813/api/chamados',
+                    dataType: 'json',
+                    url: 'http://localhost:49813/api/Chamados',
                     method: 'GET',
                     success: function (resposta) {
-
+                        $("#chamados").html('Lista de Chamados');
+                        $.each(resposta, function (k, v) {
+                            $("#chamados").append('<li>' + v.Descricao + '</li>');
+                        });
                     },
                     error: function (erro) {
                         alert('Erro: ' + erro.responseText)

@@ -7,13 +7,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Projeto01_ApiChamados.Controllers
 {
+    [EnableCors(origins:"*",methods:"GET, POST",headers:"*")]
     public class ChamadosController : ApiController
     {
         static readonly ChamadosDao dao = new ChamadosDao();
-
+        public IEnumerable<Chamado> GetChamados()
+        {
+            return dao.ListarChamados();
+        }
         //Criando a Resposta POST de Incluir  Chamados
         public HttpResponseMessage PostChamado(Chamado chamado)
         {
